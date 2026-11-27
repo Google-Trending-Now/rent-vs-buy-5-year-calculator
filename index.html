@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rent vs Buy 5 Year Calculator | Is It Cheaper to Rent or Buy for 5 Years?</title>
 
-  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PXVPQ6F4"></script>
+    <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PXVPQ6F4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -21,18 +21,18 @@
   
   <meta name="description" content="Free rent vs buy 5 year calculator for the USA, UK, Canada, and Australia. Run real numbers with our is it cheaper to rent or buy for 5 years calculator—factoring in closing costs, equity, and opportunity cost.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://google-trending-now.github.io/rent-vs-buy-5-year-calculator/">
+  <link rel="canonical" href="https://example.com/rent-vs-buy-5-year-calculator/">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://google-trending-now.github.io/rent-vs-buy-5-year-calculator/">
+  <meta property="og:url" content="https://example.com/rent-vs-buy-5-year-calculator/">
   <meta property="og:title" content="Rent vs Buy 5 Year Calculator — 5-Year Homeownership vs. Renting Comparison">
   <meta property="og:description" content="Compare the true 5-year net cost of buying a home versus renting and investing your down payment. Supports USD, GBP, CAD, and AUD.">
   <meta property="og:site_name" content="FiveYearHomeCalc">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://google-trending-now.github.io/rent-vs-buy-5-year-calculator/">
+  <meta name="twitter:url" content="https://example.com/rent-vs-buy-5-year-calculator/">
   <meta name="twitter:title" content="Rent vs Buy 5 Year Calculator — Real 5-Year Cost Breakdown">
   <meta name="twitter:description" content="Find out whether renting or buying comes out ahead over a 5-year timeline, including closing costs, amortization, and investment returns.">
 
@@ -47,7 +47,7 @@
       {
         "@type": "WebApplication",
         "name": "Rent vs Buy 5 Year Calculator",
-        "url": "https://google-trending-now.github.io/rent-vs-buy-5-year-calculator/",
+        "url": "https://example.com/rent-vs-buy-5-year-calculator/",
         "description": "An interactive 5-year financial modeling tool that compares the net cost of buying a home against renting and investing the saved upfront cash across USD, GBP, CAD, and AUD.",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "All",
@@ -1403,15 +1403,87 @@
         // Update Pure CSS Comparison Bars
         const buyBarNum = Math.max(0, yr5.netBuyCost);
         const rentBarNum = Math.max(0, yr5.netRentCost);
-        const maxBar = Math.max(buyBarNum, rentBarNum, 1
-                                
-<script>
-  document.addEventListener("click", function () {
-    if (!sessionStorage.getItem("tabOpened")) {
-      window.open("https://blueroombot.blogspot.com", "_blank");
-      sessionStorage.setItem("tabOpened", "true");
-    }
-  });
-</script>
+        const maxBar = Math.max(buyBarNum, rentBarNum, 1);
+
+        els.buyBarFill.style.width = ((buyBarNum / maxBar) * 100).toFixed(1) + "%";
+        els.rentBarFill.style.width = ((rentBarNum / maxBar) * 100).toFixed(1) + "%";
+        els.buyBarVal.textContent = fmtMoney(yr5.netBuyCost);
+        els.rentBarVal.textContent = fmtMoney(yr5.netRentCost);
+
+        // Update Year-by-Year Table
+        const rowsHtml = years.map(function (row) {
+          const rowDiff = row.netBuyCost - row.netRentCost;
+          let winnerBadge;
+          if (Math.abs(rowDiff) < 1) {
+            winnerBadge = '<span class="pill-winner pill-rent">Tie</span>';
+          } else if (rowDiff > 0) {
+            winnerBadge = '<span class="pill-winner pill-rent">Rent +' + fmtMoney(rowDiff) + '</span>';
+          } else {
+            winnerBadge = '<span class="pill-winner pill-buy">Buy +' + fmtMoney(Math.abs(rowDiff)) + '</span>';
+          }
+
+          return (
+            "<tr>" +
+              "<td>Year " + row.year + "</td>" +
+              "<td>" + fmtMoney(row.buyCashOut) + "</td>" +
+              "<td>" + fmtMoney(row.netEquity) + "</td>" +
+              "<td>" + fmtMoney(row.netBuyCost) + "</td>" +
+              "<td>" + fmtMoney(row.rentPaid) + "</td>" +
+              "<td>" + fmtMoney(row.invGains) + "</td>" +
+              "<td>" + fmtMoney(row.netRentCost) + "</td>" +
+              "<td>" + winnerBadge + "</td>" +
+            "</tr>"
+          );
+        }).join("");
+
+        els.breakdownBody.innerHTML = rowsHtml;
+      }
+
+      function setCurrency(code) {
+        if (!CURRENCIES[code]) return;
+        activeCurrency = code;
+        const symbol = CURRENCIES[code].symbol;
+
+        els.currencySymbols.forEach(function (el) {
+          el.textContent = symbol;
+        });
+
+        els.currencyButtons.forEach(function (btn) {
+          const isCurrent = btn.getAttribute("data-currency") === code;
+          btn.classList.toggle("active", isCurrent);
+          btn.setAttribute("aria-pressed", isCurrent ? "true" : "false");
+        });
+
+        calculate();
+      }
+
+      function resetDefaults() {
+        Object.keys(DEFAULTS).forEach(function (key) {
+          if (els[key]) {
+            els[key].value = DEFAULTS[key];
+          }
+        });
+        calculate();
+      }
+
+      // Attach listeners
+      Object.keys(DEFAULTS).forEach(function (key) {
+        if (els[key]) {
+          els[key].addEventListener("input", calculate);
+        }
+      });
+
+      els.currencyButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setCurrency(btn.getAttribute("data-currency"));
+        });
+      });
+
+      els.resetBtn.addEventListener("click", resetDefaults);
+
+      // Initial render
+      calculate();
+    })();
+  </script>
 </body>
 </html>
