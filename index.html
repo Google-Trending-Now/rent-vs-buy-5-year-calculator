@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent vs Buy 5 Year Calculator | Is It Cheaper to Rent or Buy for 5 Years?</title>
+  <meta name="description" content="Free rent vs buy 5 year calculator for the USA, UK, Canada, and Australia. Run real numbers with our is it cheaper to rent or buy for 5 years calculator—factoring in closing costs, equity, and opportunity cost.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://example.com/rent-vs-buy-5-year-calculator/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/rent-vs-buy-5-year-calculator/">
+  <meta property="og:title" content="Rent vs Buy 5 Year Calculator — 5-Year Homeownership vs. Renting Comparison">
+  <meta property="og:description" content="Compare the true 5-year net cost of buying a home versus renting and investing your down payment. Supports USD, GBP, CAD, and AUD.">
+  <meta property="og:site_name" content="FiveYearHomeCalc">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://example.com/rent-vs-buy-5-year-calculator/">
+  <meta name="twitter:title" content="Rent vs Buy 5 Year Calculator — Real 5-Year Cost Breakdown">
+  <meta name="twitter:description" content="Find out whether renting or buying comes out ahead over a 5-year timeline, including closing costs, amortization, and investment returns.">
+
+  <!-- Inline SVG Favicon (House + Rising Chart) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2544'/%3E%3Cpath d='M12 31L32 14l20 17v21a2 2 0 0 1-2 2H14a2 2 0 0 1-2-2V31z' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linejoin='round'/%3E%3Crect x='20' y='38' width='5' height='10' rx='1' fill='%2334d399'/%3E%3Crect x='29.5' y='32' width='5' height='16' rx='1' fill='%2310b981'/%3E%3Crect x='39' y='26' width='5' height='22' rx='1' fill='%236ee7b7'/%3E%3C/svg%3E">
+
+  <!-- JSON-LD Structured Data (WebApplication + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Rent vs Buy 5 Year Calculator",
+        "url": "https://example.com/rent-vs-buy-5-year-calculator/",
+        "description": "An interactive 5-year financial modeling tool that compares the net cost of buying a home against renting and investing the saved upfront cash across USD, GBP, CAD, and AUD.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why is 5 years used as the standard benchmark for renting vs. buying?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Buying and selling a home typically costs 7% to 10% of the property's value in combined transaction fees, taxes, and agent commissions. Over a 5-year period, steady home appreciation and mortgage principal paydown usually begin to offset those upfront and exit costs, making year five the common break-even window."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this rent vs buy 5 year calculator work for the UK, Canada, and Australia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Switch the currency selector to GBP, CAD, or AUD and adjust the local rates. For example, UK buyers can include Stamp Duty inside Buying Closing Costs, Canadian buyers can factor in Land Transfer Tax, and Australian buyers can enter state Stamp Duty and council rates."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does opportunity cost affect the 5-year comparison?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When you buy a home, your down payment and closing costs are locked into real estate. If you rent instead, that cash can be invested in index funds, bonds, or high-yield savings. The returns you could have earned on that capital reduce the true net cost of renting."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are unrecoverable costs when owning a home?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Unrecoverable ownership costs are expenses that do not build equity: mortgage interest, property taxes, homeowners insurance, routine maintenance, and buying or selling closing fees. Comparing unrecoverable buying costs against rent gives a far more accurate picture than comparing a mortgage payment to monthly rent."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if home prices stay flat or drop over the next 5 years?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Set the Expected Annual Home Appreciation input to 0% or a negative number to stress-test your scenario. Without price growth, selling costs and early mortgage interest almost always make renting significantly cheaper over a 5-year window."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-page: #f4f6f9;
+      --bg-card: #ffffff;
+      --bg-subtle: #f8fafc;
+      --navy-900: #0b1c33;
+      --navy-800: #0f2544;
+      --navy-700: #1a365d;
+      --emerald-700: #047857;
+      --emerald-600: #059669;
+      --emerald-100: #d1fae5;
+      --emerald-50: #ecfdf5;
+      --amber-700: #b45309;
+      --amber-50: #fffbeb;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #6b7280;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 1px 2px rgba(15, 37, 68, 0.05);
+      --shadow-md: 0 4px 14px rgba(15, 37, 68, 0.07);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 65%, var(--navy-700) 100%);
+      color: #ffffff;
+      padding: 36px 0 44px;
+      border-bottom: 4px solid var(--emerald-600);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .currency-bar {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      gap: 4px;
+    }
+
+    .currency-btn {
+      background: transparent;
+      border: none;
+      color: #dbeafe;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .currency-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    .currency-btn.active {
+      background: var(--emerald-600);
+      color: #ffffff;
+    }
+
+    .hero-content h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      margin: 0;
+      max-width: 720px;
+      color: #cbd5e1;
+      font-size: 1.05rem;
+    }
+
+    /* Main Layout */
+    main {
+      padding: 28px 0 56px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Verdict Banner */
+    .verdict-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 22px 26px;
+      margin-bottom: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--emerald-600);
+      background: var(--emerald-50);
+      box-shadow: var(--shadow-md);
+    }
+
+    .verdict-banner.buy-wins {
+      border-color: var(--navy-700);
+      background: #eff6ff;
+    }
+
+    .verdict-label {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--emerald-700);
+      margin-bottom: 4px;
+    }
+
+    .verdict-banner.buy-wins .verdict-label {
+      color: var(--navy-700);
+    }
+
+    .verdict-headline {
+      margin: 0;
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.02em;
+    }
+
+    .verdict-sub {
+      margin: 4px 0 0;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    .btn-reset {
+      background: #ffffff;
+      color: var(--navy-800);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-reset:hover {
+      background: var(--bg-subtle);
+      border-color: var(--navy-700);
+    }
+
+    /* Calculator Grid */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 24px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .badge-buy {
+      background: #dbeafe;
+      color: var(--navy-800);
+    }
+
+    .badge-rent {
+      background: var(--emerald-100);
+      color: var(--emerald-700);
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .field-hint {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-prefix,
+    .input-suffix {
+      position: absolute;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .input-prefix {
+      left: 11px;
+    }
+
+    .input-suffix {
+      right: 11px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 9px 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      background: #ffffff;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .field input.has-prefix {
+      padding-left: 32px;
+    }
+
+    .field input.has-suffix {
+      padding-right: 34px;
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: var(--emerald-600);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+    }
+
+    /* Results Summary Cards */
+    .results-section {
+      margin-bottom: 24px;
+    }
+
+    .section-heading {
+      margin: 0 0 16px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.015em;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      padding: 22px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+
+    .summary-card.buy-card::before {
+      background: var(--navy-800);
+    }
+
+    .summary-card.rent-card::before {
+      background: var(--emerald-600);
+    }
+
+    .summary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .summary-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+    }
+
+    .summary-figure {
+      margin: 4px 0 16px;
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.025em;
+    }
+
+    .breakdown-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .breakdown-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px dashed var(--border);
+      color: var(--text-secondary);
+    }
+
+    .breakdown-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .breakdown-list strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .text-emerald {
+      color: var(--emerald-700) !important;
+    }
+
+    /* CSS Horizontal Bar Chart */
+    .chart-card {
+      padding: 22px 24px;
+      margin-bottom: 24px;
+    }
+
+    .chart-title {
+      margin: 0 0 16px;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 165px 1fr 110px;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bar-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .bar-track {
+      height: 26px;
+      background: var(--bg-page);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 0.35s ease;
+      min-width: 4px;
+    }
+
+    .bar-fill.buy-bar {
+      background: linear-gradient(90deg, var(--navy-800), #2563eb);
+    }
+
+    .bar-fill.rent-bar {
+      background: linear-gradient(90deg, var(--emerald-700), #10b981);
+    }
+
+    .bar-value {
+      text-align: right;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chart-note {
+      margin: 12px 0 0;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Year-by-Year Table */
+    .table-card {
+      padding: 22px 24px;
+      margin-bottom: 36px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      font-variant-numeric: tabular-nums;
+      min-width: 680px;
+    }
+
+    thead th {
+      text-align: right;
+      padding: 11px 12px;
+      background: var(--bg-subtle);
+      color: var(--navy-800);
+      font-weight: 700;
+      border-bottom: 2px solid var(--border-strong);
+      white-space: nowrap;
+    }
+
+    thead th:first-child {
+      text-align: left;
+    }
+
+    tbody td {
+      text-align: right;
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    tbody td:first-child {
+      text-align: left;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    tbody tr:last-child {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    tbody tr:last-child td {
+      color: var(--navy-900);
+      border-bottom: none;
+    }
+
+    .pill-winner {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pill-rent {
+      background: var(--emerald-100);
+      color: var(--emerald-700);
+    }
+
+    .pill-buy {
+      background: #dbeafe;
+      color: var(--navy-800);
+    }
+
+    /* Editorial / E-E-A-T Content */
+    .content-article {
+      display: grid;
+      gap: 24px;
+    }
+
+    .editorial-card {
+      padding: 28px 30px;
+    }
+
+    .editorial-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.015em;
+    }
+
+    .editorial-card p {
+      margin: 0 0 14px;
+      color: var(--text-secondary);
+      font-size: 0.97rem;
+    }
+
+    .editorial-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-list {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 10px;
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+    }
+
+    .feature-list strong {
+      color: var(--navy-900);
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg-subtle);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      padding: 15px 18px;
+      font-weight: 700;
+      font-size: 0.97rem;
+      color: var(--navy-900);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--emerald-700);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-answer {
+      padding: 0 18px 16px;
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      background: #ffffff;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--navy-900);
+      color: #94a3b8;
+      padding: 28px 0;
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .calc-grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .site-header {
+        padding: 24px 0 32px;
+      }
+
+      .input-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bar-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .bar-value {
+        text-align: left;
+      }
+
+      .panel,
+      .summary-card,
+      .chart-card,
+      .table-card,
+      .editorial-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-top">
+        <a href="#top" class="brand" id="top">
+          <span class="brand-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9.5z"/>
+              <path d="M9 17v-4M12 17v-6M15 17v-8" stroke="#ffffff"/>
+            </svg>
+          </span>
+          <span>FiveYearHomeCalc</span>
+        </a>
+
+        <div class="currency-bar" role="group" aria-label="Select currency">
+          <button type="button" class="currency-btn active" data-currency="USD" data-symbol="$" aria-pressed="true">$ USD</button>
+          <button type="button" class="currency-btn" data-currency="GBP" data-symbol="£" aria-pressed="false">£ GBP</button>
+          <button type="button" class="currency-btn" data-currency="CAD" data-symbol="C$" aria-pressed="false">C$ CAD</button>
+          <button type="button" class="currency-btn" data-currency="AUD" data-symbol="A$" aria-pressed="false">A$ AUD</button>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <h1>Rent vs Buy 5 Year Calculator</h1>
+        <p class="hero-subtitle">Compare the true 5-year net cost of buying a home against renting and investing your down payment. Built for homebuyers and renters in the US, UK, Canada, and Australia.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Verdict Banner -->
+    <section class="verdict-banner" id="verdictBanner" aria-live="polite">
+      <div>
+        <span class="verdict-label" id="verdictLabel">5-Year Financial Verdict</span>
+        <p class="verdict-headline" id="verdictHeadline">Calculating...</p>
+        <p class="verdict-sub" id="verdictSub">Based on net cash out minus equity gained or investment returns earned.</p>
+      </div>
+      <button type="button" class="btn-reset" id="resetBtn">Reset to Defaults</button>
+    </section>
+
+    <!-- Calculator Inputs -->
+    <section aria-label="Calculator inputs">
+      <div class="calc-grid">
+        <!-- Buying Panel -->
+        <div class="card panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Buying Assumptions</h2>
+            <span class="badge badge-buy">Homeownership</span>
+          </div>
+          <div class="input-grid">
+            <div class="field full">
+              <label for="homePrice">Home Purchase Price</label>
+              <div class="input-wrap">
+                <span class="input-prefix currency-symbol">$</span>
+                <input type="number" id="homePrice" class="has-prefix" value="450000" min="10000" step="5000">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="downPaymentPct">
+                <span>Down Payment</span>
+                <span class="field-hint" id="downPaymentAmtHint">$90,000</span>
+              </label>
+              <div class="input-wrap">
+                <input type="number" id="downPaymentPct" class="has-suffix" value="20" min="0" max="100" step="1">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="interestRate">Mortgage Rate</label>
+              <div class="input-wrap">
+                <input type="number" id="interestRate" class="has-suffix" value="6.5" min="0" max="20" step="0.1">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="loanTerm">Loan Term</label>
+              <div class="input-wrap">
+                <input type="number" id="loanTerm" class="has-suffix" value="30" min="5" max="40" step="1">
+                <span class="input-suffix">yrs</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="propertyTaxPct">Annual Property Tax</label>
+              <div class="input-wrap">
+                <input type="number" id="propertyTaxPct" class="has-suffix" value="1.1" min="0" max="10" step="0.1">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="maintenancePct">Annual Maint. &amp; Ins.</label>
+              <div class="input-wrap">
+                <input type="number" id="maintenancePct" class="has-suffix" value="1.5" min="0" max="10" step="0.1">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="buyingClosingPct">Buying Closing Costs</label>
+              <div class="input-wrap">
+                <input type="number" id="buyingClosingPct" class="has-suffix" value="3.0" min="0" max="15" step="0.5">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="sellingClosingPct">Selling Closing Costs</label>
+              <div class="input-wrap">
+                <input type="number" id="sellingClosingPct" class="has-suffix" value="6.0" min="0" max="15" step="0.5">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="appreciationPct">Annual Home Growth</label>
+              <div class="input-wrap">
+                <input type="number" id="appreciationPct" class="has-suffix" value="3.5" min="-10" max="15" step="0.25">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Renting Panel -->
+        <div class="card panel">
+          <div class="panel-header">
+            <h2 class="panel-title">Renting Assumptions</h2>
+            <span class="badge badge-rent">Rent &amp; Invest</span>
+          </div>
+          <div class="input-grid">
+            <div class="field full">
+              <label for="monthlyRent">Monthly Rent</label>
+              <div class="input-wrap">
+                <span class="input-prefix currency-symbol">$</span>
+                <input type="number" id="monthlyRent" class="has-prefix" value="2400" min="100" step="50">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="rentIncreasePct">Annual Rent Increase</label>
+              <div class="input-wrap">
+                <input type="number" id="rentIncreasePct" class="has-suffix" value="3.0" min="0" max="20" step="0.25">
+                <span class="input-suffix">%</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="rentersInsurance">Renter's Insurance / mo</label>
+              <div class="input-wrap">
+                <span class="input-prefix currency-symbol">$</span>
+                <input type="number" id="rentersInsurance" class="has-prefix" value="25" min="0" step="5">
+              </div>
+            </div>
+
+            <div class="field full">
+              <label for="investmentReturnPct">
+                <span>Expected Investment Return Rate (Opportunity Cost)</span>
+              </label>
+              <div class="input-wrap">
+                <input type="number" id="investmentReturnPct" class="has-suffix" value="7.0" min="0" max="20" step="0.25">
+                <span class="input-suffix">%</span>
+              </div>
+              <span class="field-hint">Annual return earned by investing the saved down payment and buying closing costs.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Summary -->
+    <section class="results-section" aria-label="5-year comparison results">
+      <h2 class="section-heading">Is It Cheaper to Rent or Buy for 5 Years Calculator — Results Summary</h2>
+
+      <div class="summary-grid">
+        <!-- Buy Summary Card -->
+        <div class="card summary-card buy-card">
+          <div class="summary-top">
+            <span class="summary-label">Net 5-Year Cost of Buying</span>
+            <span class="badge badge-buy">Year 5 Exit</span>
+          </div>
+          <div class="summary-figure" id="buyNetCost">$0</div>
+          <ul class="breakdown-list">
+            <li><span>Est. Monthly Mortgage (P&amp;I)</span><strong id="buyMonthlyPI">$0</strong></li>
+            <li><span>Initial Cash Out (Down + Closing)</span><strong id="buyInitialCash">$0</strong></li>
+            <li><span>5-Year Total Cash Outflow</span><strong id="buyTotalOut">$0</strong></li>
+            <li><span>Est. Home Value at Year 5</span><strong id="buyEndValue">$0</strong></li>
+            <li><span>Less: Net Home Equity After Sale</span><strong class="text-emerald" id="buyNetEquity">$0</strong></li>
+          </ul>
+        </div>
+
+        <!-- Rent Summary Card -->
+        <div class="card summary-card rent-card">
+          <div class="summary-top">
+            <span class="summary-label">Net 5-Year Cost of Renting</span>
+            <span class="badge badge-rent">With Opportunity Cost</span>
+          </div>
+          <div class="summary-figure" id="rentNetCost">$0</div>
+          <ul class="breakdown-list">
+            <li><span>Year 1 Monthly Rent + Insurance</span><strong id="rentYear1Monthly">$0</strong></li>
+            <li><span>Year 5 Monthly Rent + Insurance</span><strong id="rentYear5Monthly">$0</strong></li>
+            <li><span>5-Year Total Rent &amp; Insurance Paid</span><strong id="rentTotalOut">$0</strong></li>
+            <li><span>Invested Upfront Cash Balance</span><strong id="rentPortfolioEnd">$0</strong></li>
+            <li><span>Less: 5-Year Investment Gains</span><strong class="text-emerald" id="rentInvGains">$0</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Pure CSS Horizontal Comparison Bar Chart -->
+      <div class="card chart-card">
+        <h3 class="chart-title">Net 5-Year Cost Comparison (Lower Is Better)</h3>
+        <div class="bar-group">
+          <div class="bar-row">
+            <span class="bar-label">Net Buying Cost</span>
+            <div class="bar-track">
+              <div class="bar-fill buy-bar" id="buyBarFill" style="width: 50%;"></div>
+            </div>
+            <span class="bar-value" id="buyBarVal">$0</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Net Renting Cost</span>
+            <div class="bar-track">
+              <div class="bar-fill rent-bar" id="rentBarFill" style="width: 50%;"></div>
+            </div>
+            <span class="bar-value" id="rentBarVal">$0</span>
+          </div>
+        </div>
+        <p class="chart-note" id="chartNote">Negative net cost indicates that home equity growth or investment gains exceeded total cash spent over 5 years.</p>
+      </div>
+
+      <!-- Year-by-Year Breakdown Table -->
+      <div class="card table-card">
+        <h3 class="chart-title">Year-by-Year 5-Year Financial Breakdown</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Buying Cash Out</th>
+                <th>Net Home Equity</th>
+                <th>Net Buying Cost</th>
+                <th>Rent Paid</th>
+                <th>Investment Gains</th>
+                <th>Net Renting Cost</th>
+                <th>Ahead By</th>
+              </tr>
+            </thead>
+            <tbody id="breakdownBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Content (E-E-A-T) -->
+    <article class="content-article">
+      <section class="card editorial-card">
+        <h2>How the 5-Year Rule Works</h2>
+        <p>Personal finance planners often point to five years as the minimum time you should plan to stay in a home before buying makes financial sense. The reason comes down to two numbers: transaction friction and mortgage amortization.</p>
+        <p>On day one, buying a property involves upfront closing costs—origination fees, inspections, legal work, and transfer taxes or stamp duty—typically totaling 2% to 5% of the purchase price. When you sell, agent commissions and closing fees take another 5% to 7% off the sale price. If you move after two or three years, your home rarely appreciates enough to cover that 8% to 10% round-trip cost.</p>
+        <p>Meanwhile, early mortgage payments are heavily front-loaded toward interest. During the first five years of a 30-year loan at 6.5%, roughly 80% of your monthly principal-and-interest payment goes to the lender rather than your own equity. By year five, steady appreciation and rising principal payments usually start catching up—which is why running a <strong>rent vs buy 5 year calculator</strong> before making an offer saves buyers from costly guesswork.</p>
+      </section>
+
+      <section class="card editorial-card">
+        <h2>What This Calculator Factors In</h2>
+        <p>Comparing a monthly mortgage quote against a monthly rent check misses half the equation. This <strong>is it cheaper to rent or buy for 5 years calculator</strong> models the full balance sheet on both sides:</p>
+        <ul class="feature-list">
+          <li><strong>Unrecoverable Ownership Costs:</strong> Mortgage interest, annual property taxes, homeowners insurance, routine repairs, and both buying and selling closing costs. None of this money comes back to you when you sell.</li>
+          <li><strong>Equity Buildup &amp; Amortization:</strong> Each monthly payment reduces your loan balance based on an exact monthly amortization schedule. Combined with annual home appreciation, this determines your net proceeds after selling costs at the end of each year.</li>
+          <li><strong>Opportunity Cost of Cash:</strong> Every dollar tied up in a down payment and closing fees is a dollar that cannot compound in the stock market or fixed-income assets. We calculate the investment gains a renter earns by keeping that same upfront cash invested over 5 years.</li>
+          <li><strong>Rent Inflation:</strong> Unlike a fixed-rate mortgage, rent rarely stays flat. The model compounds your monthly rent annually so you can see how rising leases narrow the gap over time.</li>
+        </ul>
+      </section>
+
+      <section class="card editorial-card">
+        <h2>5-Year Rent vs. Buy FAQ</h2>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Why is 5 years used as the standard benchmark for renting vs. buying?</summary>
+            <div class="faq-answer">
+              Buying and selling a home typically costs 7% to 10% of the property's value in combined transaction fees, taxes, and agent commissions. Over a 5-year period, steady home appreciation and mortgage principal paydown usually begin to offset those upfront and exit costs, making year five the common break-even window.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does this rent vs buy 5 year calculator work for the UK, Canada, and Australia?</summary>
+            <div class="faq-answer">
+              Yes. Switch the currency selector at the top to GBP, CAD, or AUD and adjust the local percentages. For example, UK buyers can fold Stamp Duty Land Tax into Buying Closing Costs, Canadian buyers can include Land Transfer Tax, and Australian buyers can enter state Stamp Duty and council rates.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How does opportunity cost affect the 5-year comparison?</summary>
+            <div class="faq-answer">
+              When you buy a home, your down payment and closing costs are locked into real estate. If you rent instead, that cash can be invested in index funds, bonds, or high-yield savings. The returns you could have earned on that capital reduce the true net cost of renting.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What are unrecoverable costs when owning a home?</summary>
+            <div class="faq-answer">
+              Unrecoverable ownership costs are expenses that do not build equity: mortgage interest, property taxes, homeowners insurance, routine maintenance, and buying or selling closing fees. Comparing unrecoverable buying costs against rent gives a far more accurate picture than comparing a mortgage payment to monthly rent.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What happens if home prices stay flat or drop over the next 5 years?</summary>
+            <div class="faq-answer">
+              Set the Annual Home Growth input to 0% or a negative number to stress-test your scenario. Without price growth, selling costs and early mortgage interest almost always make renting significantly cheaper over a 5-year window.
+            </div>
+          </details>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="footerYear">2026</span> FiveYearHomeCalc. Educational financial modeling tool — not personalized tax or investment advice.</p>
+      <p>Supports USD ($), GBP (£), CAD (C$), and AUD (A$).</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const DEFAULTS = {
+        homePrice: 450000,
+        downPaymentPct: 20,
+        interestRate: 6.5,
+        loanTerm: 30,
+        propertyTaxPct: 1.1,
+        maintenancePct: 1.5,
+        buyingClosingPct: 3.0,
+        sellingClosingPct: 6.0,
+        appreciationPct: 3.5,
+        monthlyRent: 2400,
+        rentIncreasePct: 3.0,
+        rentersInsurance: 25,
+        investmentReturnPct: 7.0
+      };
+
+      const CURRENCIES = {
+        USD: { symbol: "$", locale: "en-US" },
+        GBP: { symbol: "£", locale: "en-GB" },
+        CAD: { symbol: "C$", locale: "en-CA" },
+        AUD: { symbol: "A$", locale: "en-AU" }
+      };
+
+      let activeCurrency = "USD";
+
+      const els = {
+        homePrice: document.getElementById("homePrice"),
+        downPaymentPct: document.getElementById("downPaymentPct"),
+        interestRate: document.getElementById("interestRate"),
+        loanTerm: document.getElementById("loanTerm"),
+        propertyTaxPct: document.getElementById("propertyTaxPct"),
+        maintenancePct: document.getElementById("maintenancePct"),
+        buyingClosingPct: document.getElementById("buyingClosingPct"),
+        sellingClosingPct: document.getElementById("sellingClosingPct"),
+        appreciationPct: document.getElementById("appreciationPct"),
+        monthlyRent: document.getElementById("monthlyRent"),
+        rentIncreasePct: document.getElementById("rentIncreasePct"),
+        rentersInsurance: document.getElementById("rentersInsurance"),
+        investmentReturnPct: document.getElementById("investmentReturnPct"),
+        downPaymentAmtHint: document.getElementById("downPaymentAmtHint"),
+        verdictBanner: document.getElementById("verdictBanner"),
+        verdictLabel: document.getElementById("verdictLabel"),
+        verdictHeadline: document.getElementById("verdictHeadline"),
+        verdictSub: document.getElementById("verdictSub"),
+        buyNetCost: document.getElementById("buyNetCost"),
+        buyMonthlyPI: document.getElementById("buyMonthlyPI"),
+        buyInitialCash: document.getElementById("buyInitialCash"),
+        buyTotalOut: document.getElementById("buyTotalOut"),
+        buyEndValue: document.getElementById("buyEndValue"),
+        buyNetEquity: document.getElementById("buyNetEquity"),
+        rentNetCost: document.getElementById("rentNetCost"),
+        rentYear1Monthly: document.getElementById("rentYear1Monthly"),
+        rentYear5Monthly: document.getElementById("rentYear5Monthly"),
+        rentTotalOut: document.getElementById("rentTotalOut"),
+        rentPortfolioEnd: document.getElementById("rentPortfolioEnd"),
+        rentInvGains: document.getElementById("rentInvGains"),
+        buyBarFill: document.getElementById("buyBarFill"),
+        rentBarFill: document.getElementById("rentBarFill"),
+        buyBarVal: document.getElementById("buyBarVal"),
+        rentBarVal: document.getElementById("rentBarVal"),
+        breakdownBody: document.getElementById("breakdownBody"),
+        resetBtn: document.getElementById("resetBtn"),
+        currencySymbols: document.querySelectorAll(".currency-symbol"),
+        currencyButtons: document.querySelectorAll(".currency-btn"),
+        footerYear: document.getElementById("footerYear")
+      };
+
+      els.footerYear.textContent = new Date().getFullYear();
+
+      function num(inputEl, fallback) {
+        const val = parseFloat(inputEl.value);
+        return Number.isFinite(val) ? val : fallback;
+      }
+
+      function fmtMoney(amount) {
+        const cfg = CURRENCIES[activeCurrency];
+        const absRounded = Math.round(Math.abs(amount));
+        const formatted = absRounded.toLocaleString(cfg.locale);
+        return (amount < -0.5 ? "-" : "") + cfg.symbol + formatted;
+      }
+
+      function calculate() {
+        const homePrice = Math.max(0, num(els.homePrice, DEFAULTS.homePrice));
+        const downPaymentPct = Math.min(100, Math.max(0, num(els.downPaymentPct, DEFAULTS.downPaymentPct)));
+        const interestRate = Math.max(0, num(els.interestRate, DEFAULTS.interestRate));
+        const loanTerm = Math.max(1, num(els.loanTerm, DEFAULTS.loanTerm));
+        const propertyTaxPct = Math.max(0, num(els.propertyTaxPct, DEFAULTS.propertyTaxPct));
+        const maintenancePct = Math.max(0, num(els.maintenancePct, DEFAULTS.maintenancePct));
+        const buyingClosingPct = Math.max(0, num(els.buyingClosingPct, DEFAULTS.buyingClosingPct));
+        const sellingClosingPct = Math.max(0, num(els.sellingClosingPct, DEFAULTS.sellingClosingPct));
+        const appreciationPct = num(els.appreciationPct, DEFAULTS.appreciationPct);
+
+        const monthlyRent = Math.max(0, num(els.monthlyRent, DEFAULTS.monthlyRent));
+        const rentIncreasePct = Math.max(0, num(els.rentIncreasePct, DEFAULTS.rentIncreasePct));
+        const rentersInsurance = Math.max(0, num(els.rentersInsurance, DEFAULTS.rentersInsurance));
+        const investmentReturnPct = Math.max(0, num(els.investmentReturnPct, DEFAULTS.investmentReturnPct));
+
+        const downPayment = homePrice * (downPaymentPct / 100);
+        const buyingClosing = homePrice * (buyingClosingPct / 100);
+        const initialCash = downPayment + buyingClosing;
+        const loanPrincipal = Math.max(0, homePrice - downPayment);
+
+        els.downPaymentAmtHint.textContent = fmtMoney(downPayment);
+
+        // Monthly mortgage P&I
+        const monthlyRate = (interestRate / 100) / 12;
+        const totalMonths = Math.round(loanTerm * 12);
+        let monthlyPI = 0;
+        if (loanPrincipal > 0) {
+          if (monthlyRate === 0) {
+            monthlyPI = loanPrincipal / totalMonths;
+          } else {
+            const factor = Math.pow(1 + monthlyRate, totalMonths);
+            monthlyPI = loanPrincipal * ((monthlyRate * factor) / (factor - 1));
+          }
+        }
+
+        const appRate = appreciationPct / 100;
+        const taxRate = propertyTaxPct / 100;
+        const maintRate = maintenancePct / 100;
+        const sellRate = sellingClosingPct / 100;
+        const rentGrowth = rentIncreasePct / 100;
+        const invRate = investmentReturnPct / 100;
+
+        let remainingBalance = loanPrincipal;
+        let cumulativeBuyCashOut = initialCash;
+        let cumulativeRentOut = 0;
+        let currentRentMonthly = monthlyRent;
+        let currentHomeValue = homePrice;
+        let portfolioValue = initialCash;
+
+        const years = [];
+        let year5RentMonthly = monthlyRent + rentersInsurance;
+
+        for (let year = 1; year <= 5; year++) {
+          const annualPropTax = currentHomeValue * taxRate;
+          const annualMaint = currentHomeValue * maintRate;
+          let annualMortgagePaid = 0;
+
+          for (let m = 1; m <= 12; m++) {
+            if (remainingBalance > 0.01) {
+              const interestPayment = remainingBalance * monthlyRate;
+              let principalPayment = monthlyPI - interestPayment;
+              if (principalPayment > remainingBalance) {
+                principalPayment = remainingBalance;
+                annualMortgagePaid += principalPayment + interestPayment;
+                remainingBalance = 0;
+              } else {
+                annualMortgagePaid += monthlyPI;
+                remainingBalance -= principalPayment;
+              }
+            }
+          }
+
+          cumulativeBuyCashOut += annualMortgagePaid + annualPropTax + annualMaint;
+
+          // End-of-year home value & equity if sold at year end
+          currentHomeValue = currentHomeValue * (1 + appRate);
+          const sellingCost = currentHomeValue * sellRate;
+          const netEquity = currentHomeValue - remainingBalance - sellingCost;
+          const netBuyCost = cumulativeBuyCashOut - netEquity;
+
+          // Renting side for this year
+          const annualRentPaid = (currentRentMonthly + rentersInsurance) * 12;
+          cumulativeRentOut += annualRentPaid;
+          if (year === 5) {
+            year5RentMonthly = currentRentMonthly + rentersInsurance;
+          }
+          currentRentMonthly = currentRentMonthly * (1 + rentGrowth);
+
+          // Opportunity cost: upfront cash compounded annually
+          portfolioValue = portfolioValue * (1 + invRate);
+          const invGains = portfolioValue - initialCash;
+          const netRentCost = cumulativeRentOut - invGains;
+
+          years.push({
+            year,
+            buyCashOut: cumulativeBuyCashOut,
+            netEquity,
+            netBuyCost,
+            rentPaid: cumulativeRentOut,
+            invGains,
+            netRentCost,
+            homeValue: currentHomeValue,
+            portfolioValue
+          });
+        }
+
+        const yr5 = years[4];
+        const diff = yr5.netBuyCost - yr5.netRentCost;
+
+        // Update Verdict Banner
+        els.verdictBanner.classList.remove("buy-wins");
+        if (Math.abs(diff) < 1) {
+          els.verdictLabel.textContent = "5-Year Financial Verdict";
+          els.verdictHeadline.textContent = "Renting and buying break even over 5 years";
+          els.verdictSub.textContent = "Both options result in nearly identical net costs after equity and investment returns.";
+        } else if (diff > 0) {
+          els.verdictLabel.textContent = "5-Year Verdict — Renting Wins";
+          els.verdictHeadline.textContent = "Renting is cheaper by " + fmtMoney(diff) + " over 5 years";
+          els.verdictSub.textContent = "Investing your " + fmtMoney(initialCash) + " upfront cash and avoiding transaction costs puts renting ahead.";
+        } else {
+          els.verdictBanner.classList.add("buy-wins");
+          els.verdictLabel.textContent = "5-Year Verdict — Buying Wins";
+          els.verdictHeadline.textContent = "Buying is cheaper by " + fmtMoney(Math.abs(diff)) + " over 5 years";
+          els.verdictSub.textContent = "Home appreciation and principal paydown outpace closing costs and opportunity cost.";
+        }
+
+        // Update Summary Cards
+        els.buyNetCost.textContent = fmtMoney(yr5.netBuyCost);
+        els.buyMonthlyPI.textContent = fmtMoney(monthlyPI);
+        els.buyInitialCash.textContent = fmtMoney(initialCash);
+        els.buyTotalOut.textContent = fmtMoney(yr5.buyCashOut);
+        els.buyEndValue.textContent = fmtMoney(yr5.homeValue);
+        els.buyNetEquity.textContent = fmtMoney(yr5.netEquity);
+
+        els.rentNetCost.textContent = fmtMoney(yr5.netRentCost);
+        els.rentYear1Monthly.textContent = fmtMoney(monthlyRent + rentersInsurance);
+        els.rentYear5Monthly.textContent = fmtMoney(year5RentMonthly);
+        els.rentTotalOut.textContent = fmtMoney(yr5.rentPaid);
+        els.rentPortfolioEnd.textContent = fmtMoney(yr5.portfolioValue);
+        els.rentInvGains.textContent = fmtMoney(yr5.invGains);
+
+        // Update Pure CSS Comparison Bars
+        const buyBarNum = Math.max(0, yr5.netBuyCost);
+        const rentBarNum = Math.max(0, yr5.netRentCost);
+        const maxBar = Math.max(buyBarNum, rentBarNum, 1
